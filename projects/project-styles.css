@@ -57,47 +57,47 @@
 
 /* Text Item Styling */
 .scroll-item.text-item {
-    min-width: 600px;
-    max-width: 800px;
-    padding: 0 4rem;
+    min-width: 500px;
+    max-width: 650px;
+    padding: 0 3rem;
     background: #fff;
 }
 
 .project-info {
-    max-width: 700px;
+    max-width: 600px;
 }
 
 .project-info h2 {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 4px;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
     color: var(--primary-color);
 }
 
 .project-info .year {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: var(--light-text);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-weight: 300;
 }
 
 .project-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 0.9rem;
+    line-height: 1.6;
     color: var(--text-color);
 }
 
 .project-description p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .project-description .credits {
-    margin-top: 2rem;
-    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
     font-style: italic;
     color: var(--light-text);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* Mobile Responsive */
@@ -117,16 +117,16 @@
     }
     
     .project-info h2 {
-        font-size: 2rem;
+        font-size: 0.85rem;
         letter-spacing: 2px;
     }
     
     .project-info .year {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .project-description {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -142,15 +142,15 @@
     }
     
     .project-info h2 {
-        font-size: 1.5rem;
+        font-size: 0.8rem;
     }
     
     .project-info .year {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .project-description {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
     }
 }
 
