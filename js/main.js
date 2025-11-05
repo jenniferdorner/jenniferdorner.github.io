@@ -246,6 +246,66 @@ function initHorizontalScroll() {
         scrollContainer.style.cursor = 'default';
     });
     
+    // Click to scroll to next/previous image and center it
+    scrollContainer.addEventListener('click', (e) => {
+        const rect = scrollContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const halfWidth = rect.width / 2;
+        
+        const canScrollLeft = scrollContainer.dataset.canScrollLeft === 'true';
+        const canScrollRight = scrollContainer.dataset.canScrollRight === 'true';
+        
+        const scrollItems = Array.from(scrollContainer.querySelectorAll('.scroll-item'));
+        if (scrollItems.length === 0) return;
+        
+        // Find the currently centered or nearest item
+        const containerCenter = scrollContainer.scrollLeft + (scrollContainer.clientWidth / 2);
+        let currentIndex = 0;
+        let minDistance = Infinity;
+        
+        scrollItems.forEach((item, index) => {
+            const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+            const distance = Math.abs(containerCenter - itemCenter);
+            if (distance < minDistance) {
+                minDistance = distance;
+                currentIndex = index;
+            }
+        });
+        
+        let targetIndex = currentIndex;
+        
+        // Determine direction based on click position
+        if (mouseX < halfWidth && canScrollLeft) {
+            // Click on left side - go to previous item
+            targetIndex = Math.max(0, currentIndex - 1);
+        } else if (mouseX >= halfWidth && canScrollRight) {
+            // Click on right side - go to next item
+            targetIndex = Math.min(scrollItems.length - 1, currentIndex + 1);
+        } else {
+            // No scroll possible in that direction
+            return;
+        }
+        
+        // Scroll to center the target item
+        const targetItem = scrollItems[targetIndex];
+        
+        // Get the actual position using getBoundingClientRect for accuracy
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const itemRect = targetItem.getBoundingClientRect();
+        
+        // Calculate the center of the item relative to the document
+        const itemCenterRelativeToContainer = (itemRect.left - containerRect.left) + (itemRect.width / 2);
+        
+        // Calculate how much to scroll to center the item
+        const containerCenterOffset = containerRect.width / 2;
+        const scrollAdjustment = itemCenterRelativeToContainer - containerCenterOffset;
+        
+        scrollContainer.scrollTo({
+            left: scrollContainer.scrollLeft + scrollAdjustment,
+            behavior: 'smooth'
+        });
+    });
+    
     // Initial update
     updateScrollCursor();
     
