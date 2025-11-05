@@ -76,10 +76,10 @@
 }
 
 .project-info .year {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: var(--light-text);
     margin-bottom: 1.5rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .project-description {
@@ -94,7 +94,7 @@
 
 .project-description .credits {
     margin-top: 1.5rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-style: italic;
     color: var(--light-text);
     line-height: 1.5;
@@ -117,16 +117,16 @@
     }
     
     .project-info h2 {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         letter-spacing: 2px;
     }
     
     .project-info .year {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .project-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -142,7 +142,7 @@
     }
     
     .project-info h2 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
     .project-info .year {
@@ -150,7 +150,7 @@
     }
     
     .project-description {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 }
 

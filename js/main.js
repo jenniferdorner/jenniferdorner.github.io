@@ -192,11 +192,62 @@ function initHorizontalScroll() {
     if (!scrollContainer) return;
     
     // Hide scroll hint after user scrolls
+    let scrollHintHidden = false;
     scrollContainer.addEventListener('scroll', () => {
-        if (scrollContainer.scrollLeft > 50) {
+        if (!scrollHintHidden && scrollContainer.scrollLeft > 50) {
             scrollContainer.classList.add('scrolled');
+            scrollHintHidden = true;
         }
-    }, { once: true });
+        updateScrollCursor();
+    });
+    
+    // Update cursor based on scroll position and mouse position
+    function updateScrollCursor() {
+        const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const currentScroll = scrollContainer.scrollLeft;
+        
+        const canScrollLeft = currentScroll > 0;
+        const canScrollRight = currentScroll < maxScrollLeft - 1;
+        
+        // Store scroll state
+        scrollContainer.dataset.canScrollLeft = canScrollLeft;
+        scrollContainer.dataset.canScrollRight = canScrollRight;
+    }
+    
+    // Update cursor on mouse move
+    scrollContainer.addEventListener('mousemove', (e) => {
+        const rect = scrollContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const halfWidth = rect.width / 2;
+        
+        const canScrollLeft = scrollContainer.dataset.canScrollLeft === 'true';
+        const canScrollRight = scrollContainer.dataset.canScrollRight === 'true';
+        
+        // Left side of window
+        if (mouseX < halfWidth) {
+            if (canScrollLeft) {
+                scrollContainer.style.cursor = 'w-resize'; // Left arrow
+            } else {
+                scrollContainer.style.cursor = 'default';
+            }
+        } 
+        // Right side of window
+        else {
+            if (canScrollRight) {
+                scrollContainer.style.cursor = 'e-resize'; // Right arrow
+            } else {
+                scrollContainer.style.cursor = 'default';
+            }
+        }
+    });
+    
+    // Reset cursor when mouse leaves
+    scrollContainer.addEventListener('mouseleave', () => {
+        scrollContainer.style.cursor = 'default';
+    });
+    
+    // Initial update
+    updateScrollCursor();
     
     // Keyboard navigation for horizontal scroll
     document.addEventListener('keydown', (e) => {
