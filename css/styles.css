@@ -84,12 +84,15 @@ nav {
     font-weight: 400;
     transition: var(--transition);
     padding: 0.5rem 0;
-    border-bottom: 2px solid transparent;
 }
 
 .nav-link:hover {
     color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+}
+
+.nav-link.active {
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .nav-toggle {
